@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcarlen <jcarlen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:19:10 by jcarlen           #+#    #+#             */
-/*   Updated: 2022/02/17 17:16:42 by jcarlen          ###   ########.fr       */
+/*   Updated: 2022/02/25 11:333:5:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,31 @@
 #include <signal.h>
 #include <unistd.h>
 
+void	send_bits(int pid, char const *text, int len);
 void	ft_putnbr_base(int pid, int nb);
 int		ft_atoi(const char *str);
+size_t	ft_strlen(const char *s);
+
+size_t	ft_strlen(const char *s)
+{
+	int			i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
 
 int	main(int argc, char const *argv[])
 {
-	ft_putnbr_base(ft_atoi(argv[1]), ft_atoi(argv[2]));
+	int			pid;
+
+	if (argc == 3)
+	{
+		pid = ft_atoi(argv[1]);
+		send_bits(pid, argv[2], ft_strlen(argv[2]));
+	}
 	return (0);
 }
 
@@ -47,16 +66,24 @@ int	ft_atoi(const char *str)
 	return (nb * neg);
 }
 
-void	ft_putnbr_base(int pid, int nb)
+void	send_bits(int pid, char const *text, int len)
 {
-	int	b_size;
+	int		nxt_char;
+	size_t	i;
 
-	b_size = 2;
-	if (nb / b_size)
-		ft_putnbr_base(pid, nb / b_size);
-	if (nb % b_size == 0)
-		kill(pid, SIGUSR1);
-	if (nb % b_size == 1)
-		kill(pid, SIGUSR2);
-	usleep(10);
+	i = 0;
+	while (i <= len)
+	{
+		nxt_char = 0;
+		while (nxt_char < 7)
+		{
+			if ((text[i] >> nxt_char) & 1)
+				kill(pid, SIGUSR2);
+			else
+				kill(pid, SIGUSR1);
+			nxt_char++;
+			usleep(100);
+		}
+		i++;
+	}
 }
