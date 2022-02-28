@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcarlen <jcarlen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jcarlen <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 13:23:26 by jcarlen           #+#    #+#             */
-/*   Updated: 2022/02/28 15:09:47 by jcarlen          ###   ########.fr       */
+/*   Created: 2021/11/04 11:52:06 by jcarlen           #+#    #+#             */
+/*   Updated: 2021/11/04 11:52:07 by jcarlen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#ifndef MINITALK_H
-# define MINITALK_H
+void	ft_putstr_fd(char *s, int fd);
 
-//# include "libft/libft.h"
-# include <signal.h>
-# include <stdio.h>
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+}

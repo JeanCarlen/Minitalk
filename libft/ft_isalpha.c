@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcarlen <jcarlen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jcarlen <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 13:23:26 by jcarlen           #+#    #+#             */
-/*   Updated: 2022/02/28 15:09:47 by jcarlen          ###   ########.fr       */
+/*   Created: 2021/10/25 10:56:12 by jcarlen           #+#    #+#             */
+/*   Updated: 2021/10/25 10:56:23 by jcarlen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#ifndef MINITALK_H
-# define MINITALK_H
+int	ft_isalpha(int c);
 
-//# include "libft/libft.h"
-# include <signal.h>
-# include <stdio.h>
-
-#endif
+int	ft_isalpha(int c)
+{
+	if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))
+		return (1);
+	return (0);
+}

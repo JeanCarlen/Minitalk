@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcarlen <jcarlen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jcarlen <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 13:23:26 by jcarlen           #+#    #+#             */
-/*   Updated: 2022/02/28 15:09:47 by jcarlen          ###   ########.fr       */
+/*   Created: 2021/11/01 13:36:21 by jcarlen           #+#    #+#             */
+/*   Updated: 2021/11/01 13:36:23 by jcarlen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#ifndef MINITALK_H
-# define MINITALK_H
+void	*ft_calloc(size_t c, size_t n);
 
-//# include "libft/libft.h"
-# include <signal.h>
-# include <stdio.h>
+void	*ft_calloc(size_t c, size_t n)
+{
+	void	*ptr;
 
-#endif
+	ptr = malloc(c * n);
+	if (ptr == 0)
+		return (ptr);
+	ft_bzero(ptr, c * n);
+	return (ptr);
+}
